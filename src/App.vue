@@ -24,6 +24,9 @@ export default {
     },
     components: {
       // Your child components go here
+      NavigationBar,
+      BannerContent,
+
     },
     mounted() {
       // Code to run when the component is mounted
