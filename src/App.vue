@@ -1,26 +1,33 @@
 <template>
   <div class="container">
     <NavigationBar />
-
+    <BannerContent />
   </div>
 </template>
 
 <script>
+import BannerContent from './components/BannerContent.vue'
 import NavigationBar from './components/NavigationBar.vue'
 
 export default {
   name: 'App',
-
-  data(){
-    return {
-
+  data() {
+      return {
+        // Your component data goes here
+      };
+    },
+    methods: {
+      // Your component methods go here
+    },
+    computed: {
+      // Your computed properties go here
+    },
+    components: {
+      // Your child components go here
+    },
+    mounted() {
+      // Code to run when the component is mounted
     }
-  },
-
-  components: {
-    NavigationBar
-  }
-
 }
 </script>
 

@@ -17,15 +17,23 @@
   <script>
   export default {
     name: 'NavigationBar',
-
     data() {
       return {
+        // Your component data goes here
       };
     },
-
     methods: {
+      // Your component methods go here
+    },
+    computed: {
+      // Your computed properties go here
+    },
+    components: {
+      // Your child components go here
+    },
+    mounted() {
+      // Code to run when the component is mounted
     }
-
   };
   </script>
   
