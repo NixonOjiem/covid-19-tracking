@@ -1,9 +1,15 @@
 <template>
     <nav class="navigation-bar">
         <ul>
-            <li>Portfolio</li>
-            <li>Covid 19 summary</li>
-            <li>GitHub</li>
+            <li> 
+                <a href="https://myportfolio-cde82.web.app/"> Portfolio</a> 
+            </li>
+            <li> 
+                <a href="#">Covid 19 summary</a> 
+            </li>
+            <li> 
+                <a href="https://github.com/NixonOjiem/covid-19-tracking">GitHub</a>
+            </li>
         </ul>
     </nav>
   </template>
@@ -47,7 +53,7 @@
 .navigation-bar li {
     /* display: inline-block; Makes list items horizontal */
     padding: 20px; /* Adjust as needed */
-    color: white; /* For better visibility */
+     /* For better visibility */
     list-style: none;
     cursor: pointer;
     font-weight: bold;
@@ -63,5 +69,10 @@
 
 .navigation-bar li:nth-child(2) {
   margin: 0 auto;
+}
+
+.navigation-bar li a{
+    text-decoration: none;
+    color: white;
 }
   </style>
