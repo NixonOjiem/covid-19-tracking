@@ -28,6 +28,7 @@
     background-color: #063970;
     height: 70px;
     width: 100%;
+    position: fixed;
     margin: 0;
     border: 0;
     padding: 0;
@@ -48,6 +49,8 @@
     padding: 20px; /* Adjust as needed */
     color: white; /* For better visibility */
     list-style: none;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .navigation-bar li:first-child {
