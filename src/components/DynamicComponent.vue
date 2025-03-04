@@ -1,8 +1,16 @@
 <template>
+
     <div class="DynamicComponent">
-      <!-- Your HTML goes here -->
-       hey
+      
+        <div class="search-container">
+            <input type="search" placeholder="search for any country" id="searcg-box" v-model.trim="country" class="text-input"/>
+            <button>Search</button>
+        </div>
+        
+
     </div>
+       
+    
   </template>
   
   <script>
@@ -11,6 +19,7 @@
     data() {
       return {
         // Your component data goes here
+        country: "",
       };
     },
     methods: {
@@ -29,8 +38,21 @@
   </script>
   
   <style scoped>
-  .component-name {
-    /* Your CSS goes here */
+  .DynamicComponent {
+    background-color: #fefbf3;
+    width: 100%;
+    height: auto;
+  }
+
+  .search-container{
+   text-align: center;
+   margin-top: 10px;
+  }
+
+  .text-input{
+    padding: 5px;
+    width: 300px;
+    text-align: center;
   }
   </style>
  
