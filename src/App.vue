@@ -2,12 +2,15 @@
   <div class="container">
     <NavigationBar />
     <BannerContent />
+    <DynamicComponent />
   </div>
 </template>
 
 <script>
 import BannerContent from './components/BannerContent.vue'
+import DynamicComponent from './components/DynamicComponent.vue'
 import NavigationBar from './components/NavigationBar.vue'
+
 
 export default {
   name: 'App',
@@ -26,6 +29,7 @@ export default {
       // Your child components go here
       NavigationBar,
       BannerContent,
+      DynamicComponent
 
     },
     mounted() {
