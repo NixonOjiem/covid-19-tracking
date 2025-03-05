@@ -59,37 +59,30 @@
   padding: 0 1rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
-.search-group {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  gap: 8px;
-  background: white;
-  border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.search-group:focus-within {
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
-}
 
 .modern-input {
-  flex: 1;
   padding: 1rem 1.5rem;
   border: none;
-  border-radius: 50px;
   font-size: 1.1rem;
-  background: transparent;
+  border-bottom: 1px solid #000;
   outline: none;
+  width: 400px;
+  text-align: center;
 }
 
 .modern-input::placeholder {
   color: #999;
   font-weight: 300;
+}
+
+.modern-input:focus{
+    border-bottom: 2px solid #007bff;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.7s;
+    transition: ease-in-out;
 }
 
 .modern-button {
@@ -105,6 +98,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  
 }
 
 .modern-button:hover {
