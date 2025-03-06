@@ -31,6 +31,7 @@
   
   export default {
     name: 'DynamicComponent',
+
     data() {
       return {
         covidStats: null,
@@ -41,6 +42,7 @@
         cache: {}
       };
     },
+    
     methods: {
       handleSearch() {
         if (this.country) {
