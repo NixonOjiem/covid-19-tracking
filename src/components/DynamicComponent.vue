@@ -13,7 +13,18 @@
             />
             <button class="modern-button" @click="handleSearch">Search</button>
         </div>
-        
+
+        <div>
+            <div v-if="isLoading">Loading COVID data...</div>
+            <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
+    
+            <div v-if="covidStats" class="stats">
+              <h2>USA COVID-19 Statistics</h2>
+              <div v-for="(value, key) in covidStats" :key="key">
+                <strong>{{ formatKey(key) }}:</strong> {{ value }}
+              </div>
+            </div>
+        </div>  
 
     </div>
        
