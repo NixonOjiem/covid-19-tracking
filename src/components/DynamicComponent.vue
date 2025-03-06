@@ -35,16 +35,47 @@
   export default {
     name: 'DynamicComponent',
     data() {
-      return {
-        // Your component data goes here
-        country: "",
-      };
+    return {
+      covidStats: null,
+      isLoading: true,
+      errorMessage: '',
+      country:'',
+    };
     },
+
+    mounted() {
+    this.fetchData();
+    },
+
     methods: {
       // Your component methods go here
       handleSearch(){
         console.log(this.country)
       },
+
+      async fetchData() {
+      const options = {
+        method: 'GET',
+        url: 'https://covid-19-tracking.p.rapidapi.com/v1/usa',
+        headers: {
+          'x-rapidapi-key': process.env.VUE_APP_RAPIDAPI_KEY, // Use environment variable
+          'x-rapidapi-host': 'covid-19-tracking.p.rapidapi.com'
+        }
+      };
+
+      try {
+        const response = await axios.request(options);
+        this.covidStats = response.data;
+      } catch (error) {
+        this.errorMessage = 'Failed to fetch COVID data: ' + error.message;
+        console.error(error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    formatKey(key) {
+      return key.replace(/_/g, ' ').toUpperCase();
+    }
     },
     computed: {
       // Your computed properties go here
