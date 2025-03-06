@@ -1,90 +1,79 @@
 <template>
-
     <div class="DynamicComponent">
-      
-        <div class="search-container">
-            <input 
-            type="search" 
-            placeholder="Search for any country..." 
-            id="search-box" 
-            v-model.trim="country" 
-            class="modern-input" 
-            v-on:keyup.enter="handleSearch"
-            />
-            <button class="modern-button" @click="handleSearch">Search</button>
+      <div class="search-container">
+        <input 
+          type="search" 
+          placeholder="Search for any country..." 
+          id="search-box" 
+          v-model.trim="country" 
+          class="modern-input" 
+          v-on:keyup.enter="handleSearch"
+        />
+        <button class="modern-button" @click="handleSearch">Search</button>
+      </div>
+  
+      <div>
+        <div v-if="isLoading">Loading COVID data...</div>
+        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
+        
+        <div v-if="covidStats" class="stats">
+          <!-- Changed to dynamic country name -->
+          <h2>{{ country.toUpperCase() }} COVID-19 Statistics</h2>
+          <div v-for="(value, key) in covidStats" :key="key">
+            <strong>{{ formatKey(key) }}:</strong> {{ value }}
+          </div>
         </div>
-
-        <div>
-            <div v-if="isLoading">Loading COVID data...</div>
-            <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
-    
-            <div v-if="covidStats" class="stats">
-              <h2>USA COVID-19 Statistics</h2>
-              <div v-for="(value, key) in covidStats" :key="key">
-                <strong>{{ formatKey(key) }}:</strong> {{ value }}
-              </div>
-            </div>
-        </div>  
-
+      </div>  
     </div>
-       
-    
   </template>
   
   <script>
+  import axios from 'axios'; // Added axios import
+  
   export default {
     name: 'DynamicComponent',
     data() {
-    return {
-      covidStats: null,
-      isLoading: true,
-      errorMessage: '',
-      country:'',
-    };
-    },
-
-    mounted() {
-    this.fetchData();
-    },
-
-    methods: {
-      // Your component methods go here
-      handleSearch(){
-        console.log(this.country)
-      },
-
-      async fetchData() {
-      const options = {
-        method: 'GET',
-        url: 'https://covid-19-tracking.p.rapidapi.com/v1/usa',
-        headers: {
-          'x-rapidapi-key': process.env.VUE_APP_RAPIDAPI_KEY, // Use environment variable
-          'x-rapidapi-host': 'covid-19-tracking.p.rapidapi.com'
-        }
+      return {
+        covidStats: null,
+        isLoading: false, // Start with false since we're not loading on mount
+        errorMessage: '',
+        country: '',
       };
-
-      try {
-        const response = await axios.request(options);
-        this.covidStats = response.data;
-      } catch (error) {
-        this.errorMessage = 'Failed to fetch COVID data: ' + error.message;
-        console.error(error);
-      } finally {
-        this.isLoading = false;
+    },
+    methods: {
+      handleSearch() {
+        if (this.country) {
+          this.fetchData();
+        }
+      },
+  
+      async fetchData() {
+        this.isLoading = true;
+        this.errorMessage = '';
+        
+        const options = {
+          method: 'GET',
+          // Modified URL to use dynamic country input
+          url: `https://covid-19-tracking.p.rapidapi.com/v1/${this.country.toLowerCase()}`,
+          headers: {
+            'x-rapidapi-key': process.env.VUE_APP_RAPIDAPI_KEY,
+            'x-rapidapi-host': 'covid-19-tracking.p.rapidapi.com'
+          }
+        };
+  
+        try {
+          const response = await axios.request(options);
+          this.covidStats = response.data;
+        } catch (error) {
+          this.errorMessage = `Failed to fetch COVID data for ${this.country}: ${error.response?.data?.message || error.message}`;
+          console.error(error);
+        } finally {
+          this.isLoading = false;
+        }
+      },
+      formatKey(key) {
+        return key.replace(/_/g, ' ').toUpperCase();
       }
-    },
-    formatKey(key) {
-      return key.replace(/_/g, ' ').toUpperCase();
-    }
-    },
-    computed: {
-      // Your computed properties go here
-    },
-    components: {
-      // Your child components go here
-    },
-    mounted() {
-      // Code to run when the component is mounted
     }
   };
   </script>
