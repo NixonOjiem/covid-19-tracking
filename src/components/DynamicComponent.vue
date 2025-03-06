@@ -56,7 +56,7 @@
           // Modified URL to use dynamic country input
           url: `https://covid-19-tracking.p.rapidapi.com/v1/${this.country.toLowerCase()}`,
           headers: {
-            'x-rapidapi-key': process.env.VUE_APP_RAPIDAPI_KEY,
+            'x-rapidapi-key': 'f7171ed0damsh435a225b94967c1p1e2eb6jsn57f2abe28f90',
             'x-rapidapi-host': 'covid-19-tracking.p.rapidapi.com'
           }
         };
