@@ -18,7 +18,7 @@
         
         <div v-if="covidStats" class="stats">
           <h2>{{ country.toUpperCase() }} COVID-19 Statistics</h2>
-          <div v-for="(value, key) in covidStats" :key="key">
+          <div v-for="(value, key) in covidStats" :key="key" class="results">
             <strong>{{ formatKey(key) }}:</strong> {{ value }}
           </div>
         </div>
@@ -168,5 +168,11 @@
       justify-content: center;
       border-radius: 15px;
     }
+  }
+
+  .stats{
+    width: 100%;
+    justify-content: space-between;
+
   }
   </style>
