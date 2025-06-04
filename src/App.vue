@@ -30,7 +30,6 @@ export default {
       NavigationBar,
       BannerContent,
       DynamicComponent
-
     },
     mounted() {
       // Code to run when the component is mounted
